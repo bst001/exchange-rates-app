@@ -32,7 +32,7 @@ $ docker-machine ip dev
 ## API
 
 ```
-$ curl 192.168.99.101
+$ curl -i http://192.168.99.101/api/exchange-rates/usd/2019-07-01/2019-07-15
 ```
 
 
