@@ -15,8 +15,6 @@ services:
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
     depends_on:
       - redis
-    environment:
-      - REDIS_HOST=redis
 
   nginx:
     restart: always

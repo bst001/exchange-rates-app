@@ -4,8 +4,9 @@
 $ git clone <repo>
 $ cd <project name>
 
-$ docker-compose build
-$ docker-compose up -d
+$ docker-machine create -d virtualbox dev;
+$ eval "$(docker-machine env dev)"
+$ docker-compose up --build -d
 ```
 
 
@@ -13,13 +14,25 @@ $ docker-compose up -d
 
 ```
 $ docker-compose ps
+$ docker-compose logs
 ```
 
 
 # Use
 
+## Web app
+
+Get ip by running command below & type in a web browser (e.g.: http://192.168.99.101)
+
 ```
-$ curl 127.0.0.1
+$ docker-machine ip dev
+```
+
+
+## API
+
+```
+$ curl 192.168.99.101
 ```
 
 
