@@ -50,3 +50,11 @@ $ docker-compose stop
 $ docker-compose rm dev
 $ docker-machine rm dev
 ```
+
+### Tested with
+
+```
+docker version 18.09.5-c
+docker-compose version 1.24.0
+docker-machine version 0.16.1
+```
