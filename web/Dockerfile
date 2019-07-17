@@ -5,5 +5,5 @@ RUN python -m pip install --upgrade pip
 COPY requirements.txt requirements.txt
 RUN python -m pip install -r requirements.txt
 
-COPY static /usr/src/app/static
+COPY myapp/static /usr/src/app/static
 COPY . .
