@@ -1,3 +1,10 @@
+"""
+UWAGI dot. NBP Web API:
+    * pojedyncze zapytanie nie moze obejmowac przedzialu dluzszego, niz 93 dni
+    * dane archiwalne dla kursow walut - dostpne sa od 2 stycznia 2002 r.
+    * kursy walut sa dostepne tylko dla dni pracujacych (pon-pt)
+"""
+
 import datetime
 import math
 import requests
