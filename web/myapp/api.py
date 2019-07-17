@@ -1,18 +1,10 @@
-import datetime
-
 from flask import jsonify
 
 from myapp import app, cache
+from myapp.exchange_rates import get_exchange_rates_dict
 
 
-@app.route('/api/<currency>')
+@app.route('/api/exchange-rates/<currency>/<date_from>/<date_to>')
 @cache.memoize()
-def cached_resource(currency):
-    value = datetime.datetime.now()
-    return jsonify(value)
-
-
-@app.route('/api/clear-cache')
-def clear_cache_resource():
-    cache.clear()
-    return jsonify('done!')
+def exchange_rate_resource(currency, date_from, date_to):
+    return jsonify(get_exchange_rates_dict(currency, date_from, date_to))
