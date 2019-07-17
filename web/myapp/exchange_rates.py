@@ -24,10 +24,12 @@ def get_exchange_rates_dict(currency, date_from, date_to):
 def get_last_exchange_rates():
     last_date = db.session.query(ExchangeRate).order_by(
         ExchangeRate.date.desc()
-    ).first().date
-    return db.session.query(ExchangeRate).filter(
-        ExchangeRate.date == last_date
-    ).order_by(ExchangeRate.currency_code.asc()).all()
+    ).first()
+    if last_date:
+        return db.session.query(ExchangeRate).filter(
+            ExchangeRate.date == last_date.date
+        ).order_by(ExchangeRate.currency_code.asc()).all()
+    return []
 
 
 def get_exchange_rates_history(currency):
