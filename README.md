@@ -4,7 +4,7 @@
 $ git clone <repo>
 $ cd <project name>
 
-$ docker-machine create -d virtualbox dev;
+$ docker-machine create -d virtualbox dev
 $ eval "$(docker-machine env dev)"
 $ docker-compose up --build -d
 
@@ -49,4 +49,5 @@ $ docker-compose stop
 
 ```
 $ docker-compose rm dev
+$ docker-machine rm dev
 ```

@@ -1,5 +1,5 @@
-FROM tutum/nginx
+FROM nginx:1.16.0
 
-RUN rm /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/conf.d/default.conf
 
-COPY sites-enabled/ /etc/nginx/sites-enabled
+COPY app.conf /etc/nginx/conf.d/
