@@ -27,21 +27,21 @@ services:
       - web:web
 
   data:
-    image: postgres:latest
+    image: postgres:11.4
     volumes:
       - db-data:/var/lib/postgresql/data
     command: "true"
 
   postgres:
     restart: always
-    image: postgres:latest
+    image: postgres:11.4
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   redis:
-    image: redis
+    image: redis:5.0.5
     volumes:
       - redis-data:/data
 
