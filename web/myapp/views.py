@@ -24,8 +24,7 @@ def history_exchange_rates_view(currency):
     chart_dates = []
     chart_rates = []
     chart_length = min(len(rates), MAX_CHART_RECORDS)
-    for i in range(chart_length):
-        rate = rates[i]
+    for rate in rates[:chart_length][::-1]:
         chart_dates.append(rate.date.strftime('%Y-%m-%d'))
         chart_rates.append(float(rate.rate))
 

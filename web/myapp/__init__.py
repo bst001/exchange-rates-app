@@ -16,8 +16,8 @@ redis = Redis(
 cache = Cache(app)
 
 
-import myapp.views
 import myapp.api
+import myapp.views
 
 
 if __name__ == '__main__':

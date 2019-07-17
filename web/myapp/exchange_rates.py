@@ -27,10 +27,10 @@ def get_last_exchange_rates():
     ).first().date
     return db.session.query(ExchangeRate).filter(
         ExchangeRate.date == last_date
-    ).all()
+    ).order_by(ExchangeRate.currency_code.asc()).all()
 
 
 def get_exchange_rates_history(currency):
     return db.session.query(ExchangeRate).filter(
         ExchangeRate.currency_code == currency.upper()
-    ).all()
+    ).order_by(ExchangeRate.date.desc()).all()
