@@ -1,15 +1,24 @@
 from flask import render_template
 
-from myapp import app, redis
+from myapp import app
+from myapp.exchange_rates import (
+    get_exchange_rates_history,
+    get_last_exchange_rates,
+)
 
 
 @app.route('/')
-def hello_world():
-    redis.incr('hits')
-    total_hits = redis.get('hits').decode()
-    return 'Flask Dockerized. Hits: {}.'.format(total_hits)
+def last_exchange_rates_view():
+    return render_template(
+        'home.jinja2',
+        rates=get_last_exchange_rates(),
+    )
 
 
-@app.route('/s')
-def page_with_static():
-    return render_template('home.jinja2')
+@app.route('/history/<currency>')
+def history_exchange_rates_view(currency):
+    return render_template(
+        'history.jinja2',
+        currency_code=currency.upper(),
+        rates=get_exchange_rates_history(currency),
+    )
