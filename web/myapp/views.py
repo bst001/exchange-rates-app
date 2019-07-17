@@ -6,6 +6,7 @@ from myapp.exchange_rates import (
     get_last_exchange_rates,
 )
 
+
 MAX_CHART_RECORDS = 90
 
 

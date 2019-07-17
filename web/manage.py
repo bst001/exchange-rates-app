@@ -1,29 +1,7 @@
-import json
-import os
-from datetime import datetime
-
 import click
 
-from myapp.models import *
-
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
-DOWNLOAD_DIR_PATH = os.path.join(script_dir, '.download')
-
-
-def find_files(path, extension='', full_paths=True):
-    """Finds files in given directory path (not recurisively)"""
-    files = os.listdir(path)
-    if extension:
-        files = [file for file in files if file.endswith(extension)]
-    if full_paths:
-        files = [os.path.join(path, file) for file in files]
-    return files
-
-
-def read_json(path):
-    with open(path) as f:
-        return json.load(f)
+from myapp import db
+from myapp.external import download_initial_nbp_rates_and_update_db
 
 
 @click.group()
@@ -39,22 +17,7 @@ def dropdb():
 @cli.command()
 def initdb():
     db.create_all()
-
-
-@cli.command()
-def update_rates():
-    paths = find_files(DOWNLOAD_DIR_PATH)
-    for path in paths:
-        data = read_json(path)
-        for day in data:
-            date = datetime.strptime(day['effectiveDate'], '%Y-%m-%d').date()
-            for rate in day['rates']:
-                db.session.add(ExchangeRate(
-                    currency_code=rate['code'],
-                    rate=rate['mid'],
-                    date=date
-                ))
-    db.session.commit()
+    download_initial_nbp_rates_and_update_db()
 
 
 if __name__ == '__main__':

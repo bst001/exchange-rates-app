@@ -9,7 +9,6 @@ $ eval "$(docker-machine env dev)"
 $ docker-compose up --build -d
 
 $ docker-compose run web /usr/local/bin/python manage.py initdb
-$ docker-compose run web /usr/local/bin/python manage.py update-rates
 ```
 
 
